@@ -1,0 +1,18 @@
+<h2>Chat Messages</h2>
+
+<ng-container *ngFor="let message of messages">
+  <div class="container" *ngIf="message.end === 'server'">
+    <img [src]="'assets/server.jpg'" alt="Avatar" style="width:100%;">
+    <p>{{message.message}}</p>
+    <span class="time-right">{{message.time|date}}</span>
+  </div>
+
+  <div class="container darker" *ngIf="message.end === 'client'">
+    <img [src]="'assets/client.jpg'" alt="Avatar" class="right" style="width:100%;">
+    <p>{{message.message}}</p>
+    <span class="time-right">{{message.time|date}}</span>
+  </div>
+</ng-container>
+<input [(ngModel)]="message" #sms (keyup.enter)="messageSubmit(sms)">
+<button (click)="messageSubmit(sms)">Send</button>
+<router-outlet></router-outlet>
